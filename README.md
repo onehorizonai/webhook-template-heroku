@@ -1,21 +1,20 @@
-# One Horizon webhook template for Heroku
+# One Horizon webhooks on Heroku
 
-Use this repo if you want a One Horizon webhook receiver on Heroku. No Vercel, Netlify, or Cloudflare files.
+Clone this when your One Horizon app needs a webhook endpoint on Heroku. It is only the Heroku version: one Node server, one shared handler, no serverless provider config.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://www.heroku.com/deploy?template=https://github.com/onehorizonai/webhook-template-heroku)
 
-## Included
+## What is inside
 
-- Node server at `src/server.ts`
-- `/webhook` endpoint
-- webhook key checks
-- JSON validation with a 256 KB limit
-- retry-safe event ID handling
-- Sample payloads
-- optional SDK helper in `src/sdk.ts`
-- `Procfile` and `app.json`
+- `src/server.ts`: the Node HTTP server
+- `src/webhook.ts`: key check, JSON parsing, event validation, idempotency hook
+- `Procfile` and `app.json`: Heroku deploy files
+- `sample-payloads/`: example One Horizon events
+- `src/sdk.ts`: optional follow-up API calls
 
-## Run locally
+The endpoint accepts `HEAD`, `GET`, and JSON `POST` requests at `/webhook`.
+
+## Run it locally
 
 ```bash
 yarn install
@@ -33,19 +32,17 @@ curl http://localhost:3000/webhook \
   --data @sample-payloads/task-created.json
 ```
 
-## Configure One Horizon
+## Connect One Horizon
 
-1. Add your deployed `/webhook` URL in **Settings -> Apps**.
-2. Set `ONE_WEBHOOK_KEY` in Heroku.
-3. Choose events.
-4. Click **Verify**.
+1. Deploy this repo to Heroku.
+2. Add `ONE_WEBHOOK_KEY` in Heroku.
+3. In One Horizon, open **Settings -> Apps**.
+4. Add the deployed `/webhook` URL.
+5. Pick events and click **Verify**.
 
-## Before production
+## Before you ship
 
-- Keep `ONE_WEBHOOK_KEY` secret.
-- Return `2xx` quickly.
-- Store event IDs in Redis, Postgres, or another durable store before doing side effects.
-- Queue slow work. One Horizon delivery requests time out after 3 seconds.
+The in-memory event store is for the template. Replace it with Redis, Postgres, or another durable store before doing side effects. Keep the response fast; One Horizon waits 3 seconds before timing out.
 
 ## Checks
 
