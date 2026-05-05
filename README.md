@@ -14,6 +14,17 @@ Heroku version of the One Horizon webhook starter. Plain Node server, Heroku dep
 
 The server listens on `PORT` and accepts `HEAD`, `GET`, and JSON `POST` at `/webhook`.
 
+## One Horizon links
+
+- [One Horizon](https://onehorizon.ai)
+- [Webhook docs](https://onehorizon.ai/docs/integrations/webhooks)
+- [REST API docs](https://onehorizon.ai/docs/reference)
+- [JavaScript SDK](https://www.npmjs.com/package/@onehorizon/sdk-js)
+
+```bash
+npm i @onehorizon/sdk-js
+```
+
 ## Run it locally
 
 ```bash
