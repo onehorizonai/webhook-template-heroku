@@ -1,21 +1,21 @@
-# One Horizon Webhook Template for Heroku
+# One Horizon webhook template for Heroku
 
-A minimal TypeScript webhook receiver for One Horizon apps on Heroku.
+Use this repo if you want a One Horizon webhook receiver on Heroku. No Vercel, Netlify, or Cloudflare files.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://www.heroku.com/deploy?template=https://github.com/onehorizonai/webhook-template-heroku)
 
-## What You Get
+## Included
 
 - Node server at `src/server.ts`
 - `/webhook` endpoint
-- Webhook key verification
-- JSON validation and 256 KB body limit
-- Retry-safe event ID handling
+- webhook key checks
+- JSON validation with a 256 KB limit
+- retry-safe event ID handling
 - Sample payloads
-- Optional SDK helper in `src/sdk.ts`
+- optional SDK helper in `src/sdk.ts`
 - `Procfile` and `app.json`
 
-## Run Locally
+## Run locally
 
 ```bash
 yarn install
@@ -40,11 +40,11 @@ curl http://localhost:3000/webhook \
 3. Choose events.
 4. Click **Verify**.
 
-## Production Notes
+## Before production
 
 - Keep `ONE_WEBHOOK_KEY` secret.
 - Return `2xx` quickly.
-- Store processed event IDs in Redis, Postgres, or another durable store before doing side effects.
+- Store event IDs in Redis, Postgres, or another durable store before doing side effects.
 - Queue slow work. One Horizon delivery requests time out after 3 seconds.
 
 ## Checks
