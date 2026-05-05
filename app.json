@@ -1,0 +1,16 @@
+{
+  "name": "One Horizon Webhook Template for Heroku",
+  "description": "A Heroku TypeScript receiver for One Horizon app webhooks.",
+  "repository": "https://github.com/onehorizonai/webhook-template-heroku",
+  "keywords": ["one-horizon", "webhooks", "typescript"],
+  "env": {
+    "ONE_WEBHOOK_KEY": {
+      "description": "Paste the verification key from your One Horizon webhook settings.",
+      "required": true
+    },
+    "ONE_API_KEY": {
+      "description": "Optional API key for fetching related One Horizon data.",
+      "required": false
+    }
+  }
+}
