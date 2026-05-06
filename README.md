@@ -7,12 +7,12 @@ Heroku version of the One Horizon webhook starter. Plain Node server, Heroku dep
 ## Files to look at
 
 - `src/server.ts`: the Node HTTP server
-- `src/webhook.ts`: key check, JSON parsing, event validation, idempotency
+- `src/webhook.ts`: key check, CloudEvents JSON parsing, event validation, idempotency
 - `Procfile` and `app.json`: Heroku deploy files
 - `sample-payloads/`: example One Horizon events
 - `src/sdk.ts`: optional API calls after receiving an event
 
-The server listens on `PORT` and accepts `HEAD`, `GET`, and JSON `POST` at `/webhook`.
+The server listens on `PORT` and accepts `HEAD`, `GET`, and CloudEvents JSON `POST` at `/webhook`.
 
 ## One Horizon links
 
@@ -36,7 +36,7 @@ yarn dev
 ```bash
 curl http://localhost:3000/webhook \
   -X POST \
-  -H "content-type: application/json" \
+  -H "content-type: application/cloudevents+json; charset=utf-8" \
   -H "x-one-webhook-key: paste-one-horizon-webhook-key-here" \
   -H "x-one-event-id: evt_task_created" \
   -H "x-one-event-type: task.created" \
