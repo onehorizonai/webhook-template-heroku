@@ -25,6 +25,9 @@ The server listens on `PORT` and accepts `HEAD`, `GET`, and CloudEvents JSON `PO
 npm i @onehorizon/sdk-js
 ```
 
+Webhook event and payload types come from `@onehorizon/sdk-js`. `src/types.ts`
+only keeps local adapter types for headers, logging, and responses.
+
 ## Run it locally
 
 Use Node 24. The repo includes `.nvmrc` and `.node-version`.
