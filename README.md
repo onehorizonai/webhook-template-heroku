@@ -7,6 +7,7 @@ A small Node server for receiving One Horizon app webhooks on Heroku. It uses th
 ## Files to look at
 
 - `src/server.ts`: the Node HTTP server
+- `public/index.html`: the root deployment status page
 - `src/webhook.ts`: key check, CloudEvents JSON parsing, SDK event typing, idempotency
 - `Procfile` and `app.json`: Heroku deploy files
 - `sample-payloads/`: example One Horizon events
