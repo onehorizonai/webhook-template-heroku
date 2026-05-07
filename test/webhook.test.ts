@@ -1,8 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
 import { WebhookEventToJSON } from '@onehorizon/sdk-js'
 import type { WebhookEvent } from '@onehorizon/sdk-js'
-import { createMemoryEventStore } from '../src/idempotency.js'
-import { handleWebhook } from '../src/webhook.js'
+import { createMemoryEventStore, handleWebhook } from '../src/webhook.js'
 
 const payload = WebhookEventToJSON({
   specversion: '1.0',

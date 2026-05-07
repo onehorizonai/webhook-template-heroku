@@ -1,6 +1,5 @@
 import { createServer, type ServerResponse } from 'node:http'
-import { jsonResponse, MAX_WEBHOOK_BODY_BYTES } from './http.js'
-import { handleWebhook } from './webhook.js'
+import { handleWebhook, jsonResponse, MAX_WEBHOOK_BODY_BYTES, type WebhookResponse } from './webhook.js'
 
 const port = Number(process.env.PORT || 3000)
 
@@ -37,11 +36,7 @@ server.listen(port, () => {
   console.info(`One Horizon webhook endpoint ready at http://localhost:${port}/webhook`)
 })
 
-function writeResponse(
-  res: ServerResponse,
-  response: Awaited<ReturnType<typeof handleWebhook>>,
-  method = 'GET'
-) {
+function writeResponse(res: ServerResponse, response: WebhookResponse, method = 'GET') {
   res.writeHead(response.status, response.headers)
   if (method !== 'HEAD' && response.body !== undefined) {
     res.end(JSON.stringify(response.body))

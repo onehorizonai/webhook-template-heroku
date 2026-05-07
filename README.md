@@ -1,13 +1,13 @@
-# One Horizon webhooks on Heroku
+# One Horizon webhook receiver for Heroku
 
-Heroku version of the One Horizon webhook starter. Plain Node server, Heroku deploy files, no serverless adapter layer.
+A small Node server for receiving One Horizon app webhooks on Heroku. It uses the One Horizon SDK types, checks the webhook key, reads the raw CloudEvents JSON body, and returns quickly.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://www.heroku.com/deploy?template=https://github.com/onehorizonai/webhook-template-heroku)
 
 ## Files to look at
 
 - `src/server.ts`: the Node HTTP server
-- `src/webhook.ts`: key check, CloudEvents JSON parsing, event validation, idempotency
+- `src/webhook.ts`: key check, CloudEvents JSON parsing, SDK event typing, idempotency
 - `Procfile` and `app.json`: Heroku deploy files
 - `sample-payloads/`: example One Horizon events
 - `src/sdk.ts`: optional API calls after receiving an event
@@ -22,11 +22,10 @@ The server listens on `PORT` and accepts `HEAD`, `GET`, and CloudEvents JSON `PO
 - [JavaScript SDK](https://www.npmjs.com/package/@onehorizon/sdk-js)
 
 ```bash
-npm i @onehorizon/sdk-js
+npm i @onehorizon/sdk-js@latest
 ```
 
-Webhook event and payload types come from `@onehorizon/sdk-js`. `src/types.ts`
-only keeps local adapter types for headers, logging, and responses.
+Webhook event and payload types come from `@onehorizon/sdk-js`.
 
 ## Run it locally
 
@@ -57,7 +56,7 @@ curl http://localhost:3000/webhook \
 5. Pick the events you want.
 6. Click **Verify**.
 
-## Replace before real use
+## Before real use
 
 The event store is just memory. Before this does anything real, save processed event IDs in Redis, Postgres, or another durable store. Keep the handler quick; One Horizon times out after 3 seconds.
 

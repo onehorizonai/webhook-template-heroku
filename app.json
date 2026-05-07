@@ -1,6 +1,6 @@
 {
-  "name": "One Horizon Webhook Template for Heroku",
-  "description": "A Heroku TypeScript receiver for One Horizon app webhooks.",
+  "name": "One Horizon Webhook Receiver for Heroku",
+  "description": "A small Heroku TypeScript receiver for One Horizon app webhooks.",
   "repository": "https://github.com/onehorizonai/webhook-template-heroku",
   "keywords": ["one-horizon", "webhooks", "typescript"],
   "env": {
