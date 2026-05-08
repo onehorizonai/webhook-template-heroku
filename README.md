@@ -11,7 +11,7 @@ A small Node server for receiving One Horizon app webhooks on Heroku. It uses th
 - `src/webhook.ts`: key check, CloudEvents JSON parsing, SDK event typing, idempotency
 - `Procfile` and `app.json`: Heroku deploy files
 - `sample-payloads/`: example One Horizon events
-- `src/sdk.ts`: optional follow-up call that loads the first document attached to the task
+- `src/sdk.ts`: optional `loadAttachedDocument` example using the One Horizon SDK
 
 The server listens on `PORT` and accepts `HEAD`, `GET`, and CloudEvents JSON `POST` at `/webhook`.
 
